@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package service;
+option go_package=".;servicepb";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+
+message GreetRequest {
+  string name = 1;
+}
+
+message RepeatGreetRequest {
+  // The name to greet.
+  string name = 1;
+  // The ticker in second.
+  int64 ticker_second = 2;
+}
+
+message GreetResponse {
+  string greet = 1;
+  google.protobuf.Timestamp at = 2;
+}
+
+service Service {
+  rpc Greet(GreetRequest) returns (GreetResponse) {
+    option (google.api.http) = {
+      post: "/v1/service/greet"
+      body: "*"
+    };
+  };
+
+  // repeat greet the given name.
+  rpc RepeatGreet(RepeatGreetRequest) returns (stream GreetResponse) {
+    option (google.api.http) = {
+      get: "/v1/service/greet"
+    };
+  };
+}
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+  info: {
+    title: "gRPC Gateway example";
+    version: "1.0";
+    contact: {
+      name: "gRPC-Gateway project";
+      url: "https://github.com/grpc-ecosystem/grpc-gateway";
+      email: "none@example.com";
+    };
+    license: {
+      name: "BSD 3-Clause License";
+      url: "https://github.com/grpc-ecosystem/grpc-gateway/blob/master/LICENSE.txt";
+    };
+  };
+};
