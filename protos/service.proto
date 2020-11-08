@@ -53,4 +53,18 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
       url: "https://github.com/grpc-ecosystem/grpc-gateway/blob/master/LICENSE.txt";
     };
   };
+  security_definitions: {
+    security: {
+      key: "BasicAuth";
+      value: {
+        type: TYPE_BASIC;
+      }
+    }
+  }
+  security: {
+    security_requirement: {
+      key: "BasicAuth";
+      value: {};
+    }
+  }
 };
