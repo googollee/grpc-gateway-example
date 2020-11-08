@@ -1,13 +1,14 @@
 package main
 
 import (
-	"client/servicepb"
 	"context"
 	"fmt"
 	"log"
 	"time"
 
 	"google.golang.org/grpc"
+
+	"grpc_gateway/api/servicepb"
 )
 
 type preRPC map[string]string

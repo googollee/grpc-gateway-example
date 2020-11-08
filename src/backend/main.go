@@ -9,7 +9,7 @@ import (
 	"time"
 
 	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/auth"
-	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
@@ -17,10 +17,12 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"grpc_gateway/servicepb"
+	"grpc_gateway/api/servicepb"
 )
 
-type service struct{}
+type service struct {
+	servicepb.UnimplementedServiceServer
+}
 
 func (*service) Greet(context context.Context, req *servicepb.GreetRequest) (*servicepb.GreetResponse, error) {
 	fmt.Println("greet to:", req.Name)

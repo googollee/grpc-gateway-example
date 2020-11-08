@@ -1,7 +1,9 @@
 protos:
-	protoc -I ./protos protos/service.proto --go_out=plugins=grpc:./backend/servicepb/
-	protoc -I ./protos protos/service.proto --go_out=plugins=grpc:./client/servicepb/
-	protoc -I ./protos protos/service.proto --grpc-gateway_out ./backend/servicepb --grpc-gateway_opt logtostderr=true --grpc-gateway_opt paths=source_relative
-	protoc -I ./protos protos/service.proto --swagger_out ./api/ --swagger_opt logtostderr=true
+	mkdir -p ./src/api/servicepb
+	protoc protos/service.proto -I protos/ -I protos/vendors/googleapis/ -I protos/vendors/grpc-gateway/ \
+	  --go_out ./src/api/servicepb/ --go_opt paths=source_relative \
+	  --go-grpc_out ./src/api/servicepb/ --go-grpc_opt paths=source_relative \
+	  --grpc-gateway_out ./src/api/servicepb/ --grpc-gateway_opt logtostderr=true --grpc-gateway_opt paths=source_relative \
+	  --openapiv2_out ./ --openapiv2_opt logtostderr=true
 
 .PHONY: protos

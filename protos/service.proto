@@ -5,7 +5,7 @@ option go_package=".;servicepb";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "protoc-gen-swagger/options/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 message GreetRequest {
   string name = 1;
@@ -39,7 +39,7 @@ service Service {
   };
 }
 
-option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     title: "gRPC Gateway example";
     version: "1.0";
