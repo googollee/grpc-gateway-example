@@ -11,7 +11,7 @@ require (
 	github.com/go-openapi/strfmt v0.19.8
 	github.com/go-openapi/swag v0.19.11
 	github.com/go-openapi/validate v0.19.12
-	github.com/go-swagger/go-swagger v0.25.0 // indirect
+	github.com/go-swagger/go-swagger v0.25.0
 	github.com/golang/protobuf v1.4.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.0.1
